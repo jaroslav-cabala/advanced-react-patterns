@@ -8,18 +8,15 @@ function useToggle() {
   const [on, setOn] = React.useState(false)
   const toggle = () => setOn(!on)
 
-  const getToggleProps = (customProps) => {
-    const customPropsWithoutOnclick = Object.fromEntries(Object.entries(customProps).filter(([key, value]) => key !== 'onClick'))
-
-    const props = {
+  const getToggleProps = ({ onClick, ...props } = {}) => {
+    return {
       'aria-pressed': on,
       onClick: () => {
-        customProps.onClick?.();
+        onClick?.();
         toggle()
       },
-      ...customPropsWithoutOnclick
+      ...props
     }
-    return props;
   }
 
   return { on, toggle, getToggleProps }
