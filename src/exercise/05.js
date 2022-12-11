@@ -30,8 +30,8 @@ function useToggle({ reducer = toggleReducer, initialOn = false } = {}) {
   const [state, dispatch] = React.useReducer(reducer, initialState)
   const { on } = state
 
-  const toggle = () => dispatch({ type: 'toggle' })
-  const reset = () => dispatch({ type: 'reset', initialState })
+  const toggle = () => dispatch({ type: toggleActionTtypes.toggle })
+  const reset = () => dispatch({ type: toggleActionTtypes.reset, initialState })
 
   function getTogglerProps({ onClick, ...props } = {}) {
     return {
